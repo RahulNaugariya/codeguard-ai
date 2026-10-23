@@ -30,3 +30,27 @@ Built with a FastAPI backend and a responsive Tailwind CSS frontend, it features
 ```bash
 git clone https://github.com/RahulNaugariya/codeguard-ai.git
 cd codeguard-ai
+```
+
+### 2. Create a virtual environment (Recommended)
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows use: venv\Scripts\activate
+```
+
+### 3. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Set up environment variables
+Create a `.env` file in the root directory and add your Google Gemini API key:
+```text
+GEMINI_API_KEY=your_actual_api_key_here
+```
+
+### 5. Run the application
+```bash
+uvicorn src.main:app --reload
+```
+Open your browser and navigate to `http://127.0.0.1:8000` to access the CodeGuard AI dashboard.
