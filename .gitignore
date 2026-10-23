@@ -1,0 +1,17 @@
+# Environments
+.env
+venv/
+env/
+
+# Database
+codeguard.db
+
+# Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# OS generated files
+.DS_Store
+Thumbs.db
