@@ -21,12 +21,12 @@ Built with a FastAPI backend and a responsive Tailwind CSS frontend, it features
 
 ## 📸 Screenshots
 
-*(Add a screenshot of your main dashboard here once published)*
-*(Add a screenshot of your active findings and history panel here)*
+<img width="944" height="473" alt="image" src="https://github.com/user-attachments/assets/0a83cc84-ac8d-44f1-a4f7-648681df9774" />
+
 
 ## ⚙️ Local Setup & Installation
 
 ### 1. Clone the repository
 ```bash
-git clone [https://github.com/yourusername/codeguard-ai.git](https://github.com/yourusername/codeguard-ai.git)
+git clone https://github.com/RahulNaugariya/codeguard-ai.git
 cd codeguard-ai
