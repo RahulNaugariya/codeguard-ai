@@ -54,3 +54,41 @@ GEMINI_API_KEY=your_actual_api_key_here
 uvicorn src.main:app --reload
 ```
 Open your browser and navigate to `http://127.0.0.1:8000` to access the CodeGuard AI dashboard.
+
+
+## Benchmark
+
+Tested on 10 seeded vulnerabilities and 2 clean control snippets, each run once
+through the dashboard with the matching language selected. Scans were answered by
+different Gemini models depending on availability (see `GEMINI_MODELS`).
+
+| # | Flaw | Language | Result |
+|---|------|----------|--------|
+| 1 | SQL injection | Python | Caught |
+| 2 | Hardcoded secret | Python | Caught |
+| 3 | Command injection | Python | Caught |
+| 4 | Path traversal | Python | Caught |
+| 5 | Insecure deserialization | Python | Caught |
+| 6 | Weak password hashing (MD5) | Python | Caught |
+| 7 | eval on user input | Python | Caught |
+| 8 | SQL injection | Java | Caught |
+| 9 | XSS (innerHTML) | JavaScript | Caught |
+| 10 | IDOR / missing authorization | Python | Caught |
+
+**Detection: 10/10 seeded vulnerabilities.**
+
+**Clean controls: no High/Critical false alarms.** Control A (parameterized query)
+produced only low-severity advisories. Control B (validated `subprocess` call)
+produced a Medium-severity "command injection risk" warning, which is
+over-cautious since the code is safe.
+
+**Limitations:** the set is small and uses textbook vulnerabilities, each case
+was run once, and some suggested fixes need human review (for example,
+`ast.literal_eval` cannot evaluate arithmetic expressions).
+
+## Reliability
+
+The Gemini integration retries transient errors (429/500/503/504) with
+exponential backoff and falls back across the models in `GEMINI_MODELS`.
+Failures return distinct 503 (busy), 502 (downstream error) and 500 (unexpected)
+responses.
